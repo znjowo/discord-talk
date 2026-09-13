@@ -1,0 +1,9 @@
+services:
+  bot:
+    build: .
+    env_file: .env
+    restart: unless-stopped
+    # Dev: mount sources and run tsx watch for hot reload
+    volumes:
+      - ./src:/app/src:ro
+    command: ["npm", "run", "dev"]

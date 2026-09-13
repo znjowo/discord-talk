@@ -1,0 +1,20 @@
+{
+  "name": "discord-talk",
+  "build": { "dockerfile": "Dockerfile", "context": ".." },
+  "workspaceFolder": "/workspaces/discord-talk",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/discord-talk,type=bind,consistency=cached",
+  "remoteUser": "node",
+  "mounts": [
+    "source=discord-talk-node_modules,target=/workspaces/discord-talk/node_modules,type=volume"
+  ],
+  "postCreateCommand": "sudo chown node:node node_modules && npm install",
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"],
+      "settings": {
+        "typescript.tsdk": "node_modules/typescript/lib",
+        "editor.formatOnSave": true
+      }
+    }
+  }
+}
